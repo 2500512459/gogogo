@@ -5,16 +5,16 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     IState currentState;
-
-    private void Update()
+    public Dictionary<System.Type, IState> stateTables;
+    public void Update()
     {
         currentState.Update();
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         currentState.FixedUpdate();
     }
-    private void SwitchOn(IState newState)
+    public void SwitchOn(IState newState)
     {
         currentState = newState;
         currentState.Enter();
@@ -23,5 +23,9 @@ public class StateMachine : MonoBehaviour
     {
         currentState.Exit();
         SwitchOn(newState);
+    }
+    public void SwitchState(System.Type newState)
+    {
+        SwitchState(stateTables[newState]);
     }
 }
