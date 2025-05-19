@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: PlayerState_run
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerControl: {fileID: 0}
   PlayerStateMachine: {fileID: 0}
+  speed: 10
+  acceleration: 30

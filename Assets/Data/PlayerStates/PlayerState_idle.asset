@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: PlayerState_idle
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerControl: {fileID: 0}
   PlayerStateMachine: {fileID: 0}
+  deceleration: 40

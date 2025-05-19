@@ -5,12 +5,42 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private PlayerInput playerInput;
+    protected Rigidbody2D rb;
+    public float MoveSpeed => Mathf.Abs(rb.velocity.x);
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        rb = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
         playerInput.EnableGamePlayInputs();
     }
+
+    public void Move(float speed)
+    {
+        if (playerInput.Move)
+        {
+            transform.localScale = new Vector3(playerInput.Axes.x * 6f, 6f, 6f);
+        }
+        SetVelocityX(speed * playerInput.Axes.x);
+        SetVelocityY(speed * playerInput.Axes.y);
+    }
+    public void SetVelocityX(float speed)
+    {
+        rb.velocity = new Vector2(speed, rb.velocity.y);
+    }
+    public void SetVelocityY(float speed)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, speed);
+    }
+    public void SetVelocityZero()
+    {
+        rb.velocity = Vector2.zero;
+    }
+    protected void SetVelocity(Vector2 vector2)
+    {
+        rb.velocity = vector2;
+    }
+
 }

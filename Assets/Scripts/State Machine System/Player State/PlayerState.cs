@@ -3,12 +3,16 @@ using UnityEngine;
 public class PlayerState : ScriptableObject, IState
 {
     public Animator animator;
-    public PlayerStateMachine PlayerStateMachine;
     public PlayerInput playerInput;
-    public void Initialize(Animator animator, PlayerInput playerInput, PlayerStateMachine PlayerStateMachine)
+    public PlayerControl playerControl;
+    public PlayerStateMachine PlayerStateMachine;
+
+    protected float currentSpeed;
+    public void Initialize(Animator animator, PlayerInput playerInput, PlayerControl playerControl, PlayerStateMachine PlayerStateMachine)
     {
         this.animator = animator;
         this.playerInput = playerInput;
+        this.playerControl = playerControl;
         this.PlayerStateMachine = PlayerStateMachine;
     }
 

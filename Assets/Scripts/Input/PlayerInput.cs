@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     public float AxisX => Axes.x;
     public float AxisY => Axes.y;
     public bool Move => AxisX != 0f;
-    public void Start()
+    public void Awake()
     {
         PlayerInputAction = new PlayerInputAction();
     }
