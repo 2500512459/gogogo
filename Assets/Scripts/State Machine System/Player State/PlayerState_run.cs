@@ -4,11 +4,12 @@ using UnityEngine;
 public class PlayerState_run : PlayerState
 {
     [SerializeField] protected float speed = 5f;
-    [SerializeField] protected float acceleration = 20f;
+    [SerializeField] protected float acceleration = 20f;//  º”ÀŸ∂»
     public override void Enter()
     {
         base.Enter();
-        animator.Play("Player_run");
+        //animator.Play("Player_run");
+
         currentSpeed = playerControl.MoveSpeed;
     }
     public override void Update()
@@ -19,6 +20,8 @@ public class PlayerState_run : PlayerState
             PlayerStateMachine.SwitchState(typeof(PlayerState_idle));
         }
         currentSpeed = Mathf.MoveTowards(currentSpeed, speed, acceleration * Time.deltaTime);
+
+        Debug.Log(playerControl.IsGrounded());
     }
     public override void FixedUpdate()
     {

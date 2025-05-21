@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private PlayerInput playerInput;
+    private PlayerGroundDetector groundDetector;
     protected Rigidbody2D rb;
     public float MoveSpeed => Mathf.Abs(rb.velocity.x);
     private void Awake()
     {
+        groundDetector = GetComponentInChildren<PlayerGroundDetector>();
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -24,7 +26,6 @@ public class PlayerControl : MonoBehaviour
             transform.localScale = new Vector3(playerInput.Axes.x * 6f, 6f, 6f);
         }
         SetVelocityX(speed * playerInput.Axes.x);
-        SetVelocityY(speed * playerInput.Axes.y);
     }
     public void SetVelocityX(float speed)
     {
@@ -43,4 +44,6 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = vector2;
     }
 
+    public bool IsGrounded() => groundDetector.IsGrounded();
+    public bool IsFall() => rb.velocity.y < 0 && !IsGrounded();
 }
