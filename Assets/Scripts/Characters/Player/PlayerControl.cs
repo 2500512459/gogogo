@@ -44,6 +44,6 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = vector2;
     }
 
-    public bool IsGrounded() => groundDetector.IsGrounded();
-    public bool IsFall() => rb.velocity.y < 0 && !IsGrounded();
+    public bool IsGrounded => groundDetector.IsGrounded();
+    public bool IsFall => rb.velocity.y < 0 && !IsGrounded;
 }

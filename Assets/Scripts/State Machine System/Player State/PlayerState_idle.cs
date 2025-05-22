@@ -14,11 +14,20 @@ public class PlayerState_idle : PlayerState
     public override void Update()
     {
         base.Update();
-        if(playerInput.Move)
+        if (playerInput.Jump)
+        {
+            PlayerStateMachine.SwitchState(typeof(PlayerState_jump));
+        }
+        if (playerInput.Move)
+        {
             PlayerStateMachine.SwitchState(typeof(PlayerState_run));
+        }
+        if (!playerControl.IsGrounded)
+        {
+            PlayerStateMachine.SwitchState(typeof(PlayerState_fall));
+        }
         currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
 
-        Debug.Log(playerControl.IsGrounded());
     }
     public override void FixedUpdate()
     {

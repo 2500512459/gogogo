@@ -8,9 +8,13 @@ public class PlayerState : ScriptableObject, IState
     protected PlayerStateMachine PlayerStateMachine;
 
     protected float currentSpeed;
+    protected float stateStartTime;
+    protected float stateDuration => Time.time - stateStartTime;
+    protected bool isAnimationFinished => stateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
+    
 
     [SerializeField] private string stateName;
-    [SerializeField, Range(0, 1)] private float transitionDuration = 0.1f;
+    [SerializeField, Range(0, 1)] private float transitionDuration = 0.1f;//过度时间
     private int stateHash;
     public void Initialize(Animator animator, PlayerInput playerInput, PlayerControl playerControl, PlayerStateMachine PlayerStateMachine)
     {
@@ -27,7 +31,7 @@ public class PlayerState : ScriptableObject, IState
 
     public virtual void Enter()
     {
-        animator.CrossFade(stateHash, transitionDuration);
+        animator.CrossFade(stateHash, transitionDuration);// 动画平滑过渡
     }
 
     public virtual void Exit()
