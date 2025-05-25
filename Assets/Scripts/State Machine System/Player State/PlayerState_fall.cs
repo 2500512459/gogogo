@@ -12,6 +12,11 @@ public class PlayerState_fall : PlayerState
             playerControl.SetVelocityZero();
             PlayerStateMachine.SwitchState(typeof(PlayerState_idle));
         }
+        if (playerInput.Jump)
+        {
+            if(playerControl.CanAirJump)
+                PlayerStateMachine.SwitchState(typeof(PlayerState_airJump));
+        }
     }
     public override void FixedUpdate()
     {

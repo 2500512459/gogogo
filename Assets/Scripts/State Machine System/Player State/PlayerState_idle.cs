@@ -7,9 +7,9 @@ public class PlayerState_idle : PlayerState
     public override void Enter()
     {
         base.Enter();
-        //animator.Play("Player_idle");
 
         currentSpeed = playerControl.MoveSpeed;
+        playerControl.CanAirJump = true;
     }
     public override void Update()
     {

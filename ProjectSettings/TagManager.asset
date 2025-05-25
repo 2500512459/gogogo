@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Background
-  - 
+  - Fruits
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 934307059
+    locked: 0
+  - name: Fruits
+    uniqueID: 1418167599
     locked: 0

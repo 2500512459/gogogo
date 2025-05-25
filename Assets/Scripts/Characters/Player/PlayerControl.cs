@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     private PlayerGroundDetector groundDetector; // 检测是否在地面上
     protected Rigidbody2D rb; //  刚体
     public float MoveSpeed => Mathf.Abs(rb.velocity.x); //  移动速度
+    public bool CanAirJump = true;
     private void Awake()
     {
         groundDetector = GetComponentInChildren<PlayerGroundDetector>();
