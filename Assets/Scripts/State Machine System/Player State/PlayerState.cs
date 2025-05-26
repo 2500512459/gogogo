@@ -32,6 +32,7 @@ public class PlayerState : ScriptableObject, IState
     public virtual void Enter()
     {
         animator.CrossFade(stateHash, transitionDuration);// ¶¯»­Æ½»¬¹ý¶É
+        stateStartTime = Time.time;
     }
 
     public virtual void Exit()

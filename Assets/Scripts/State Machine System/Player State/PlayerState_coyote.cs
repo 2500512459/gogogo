@@ -1,10 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
-[CreateAssetMenu(fileName = "PlayerState_run", menuName = "Data/StateMachine/PlayerState/Run")]
-public class PlayerState_run : PlayerState
+[CreateAssetMenu(fileName = "PlayerState_coyote", menuName = "Data/StateMachine/PlayerState/CoyoteTime")]
+public class PlayerState_coyote : PlayerState
 {
     [SerializeField] protected float speed = 5f;
-    [SerializeField] protected float acceleration = 20f;//  ¼ÓËÙ¶È
+    [SerializeField] protected float coyeteTime = 0.1f;
     public override void Enter()
     {
         base.Enter();
@@ -19,16 +20,10 @@ public class PlayerState_run : PlayerState
         {
             PlayerStateMachine.SwitchState(typeof(PlayerState_jump));
         }
-        if (!playerInput.Move)
+        if (!playerInput.Move || stateDuration > coyeteTime)
         {
-            PlayerStateMachine.SwitchState(typeof(PlayerState_idle));
+            PlayerStateMachine.SwitchState(typeof(PlayerState_fall));
         }
-        if (!playerControl.IsGrounded)
-        {
-            PlayerStateMachine.SwitchState(typeof(PlayerState_coyote));
-        }
-        currentSpeed = Mathf.MoveTowards(currentSpeed, speed, acceleration * Time.deltaTime);
-
     }
     public override void FixedUpdate()
     {
