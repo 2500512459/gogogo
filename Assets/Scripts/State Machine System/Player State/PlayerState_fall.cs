@@ -14,8 +14,12 @@ public class PlayerState_fall : PlayerState
         }
         if (playerInput.Jump)
         {
-            if(playerControl.CanAirJump)
+            if (playerControl.CanAirJump)
+            {
                 PlayerStateMachine.SwitchState(typeof(PlayerState_airJump));
+                return;
+            }
+            playerInput.HasJumpInputBuffer = true;
         }
     }
     public override void FixedUpdate()

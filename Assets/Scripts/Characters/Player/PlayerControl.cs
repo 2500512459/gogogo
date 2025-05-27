@@ -6,7 +6,7 @@ public class PlayerControl : MonoBehaviour
 {
     private PlayerInput playerInput;    // 输入
     private PlayerGroundDetector groundDetector; // 检测是否在地面上
-    protected Rigidbody2D rb; //  刚体
+    public Rigidbody2D rb; //  刚体
     public float MoveSpeed => Mathf.Abs(rb.velocity.x); //  移动速度
     public bool CanAirJump = true;
     private void Awake()
@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (playerInput.Move)
         {
-            transform.localScale = new Vector3(playerInput.Axes.x * 6f, 6f, 6f);
+            transform.localScale = new Vector3(playerInput.Axes.x * 6f, transform.localScale.y, transform.localScale.z);
         }
         SetVelocityX(speed * playerInput.Axes.x);
     }
@@ -40,7 +40,7 @@ public class PlayerControl : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
     }
-    protected void SetVelocity(Vector2 vector2)
+    public void SetVelocity(Vector2 vector2)
     {
         rb.velocity = vector2;
     }

@@ -8,11 +8,14 @@ public class PlayerState_jump : PlayerState
     {
         base.Enter();
         playerControl.SetVelocityY(jumpForce);
+        playerInput.HasJumpInputBuffer = false;
     }
     public override void Update()
     {
-        if(playerControl.IsFall || playerInput.StopJump)
+        if (playerControl.IsFall || playerInput.StopJump)
+        {
             PlayerStateMachine.SwitchState(typeof(PlayerState_fall));
+        }
     }
     public override void FixedUpdate()
     {

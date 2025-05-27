@@ -7,14 +7,14 @@ public class PlayerState_idle : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        playerControl.SetVelocity(Vector2.zero);
         currentSpeed = playerControl.MoveSpeed;
         playerControl.CanAirJump = true;
     }
     public override void Update()
     {
         base.Update();
-        if (playerInput.Jump)
+        if (playerInput.HasJumpInputBuffer ||  playerInput.Jump)
         {
             PlayerStateMachine.SwitchState(typeof(PlayerState_jump));
         }
