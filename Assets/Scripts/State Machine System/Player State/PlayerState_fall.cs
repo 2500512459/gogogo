@@ -10,7 +10,7 @@ public class PlayerState_fall : PlayerState
         if (playerControl.IsGrounded)
         {
             playerControl.SetVelocityZero();
-            PlayerStateMachine.SwitchState(typeof(PlayerState_idle));
+            PlayerStateMachine.SwitchState(typeof(PlayerState_land));
         }
         if (playerInput.Jump)
         {

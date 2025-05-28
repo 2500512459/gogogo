@@ -9,22 +9,21 @@ public class PlayerState_idle : PlayerState
         base.Enter();
         playerControl.SetVelocity(Vector2.zero);
         currentSpeed = playerControl.MoveSpeed;
-        playerControl.CanAirJump = true;
     }
     public override void Update()
     {
         base.Update();
-        if (playerInput.HasJumpInputBuffer ||  playerInput.Jump)
+        if (playerInput.Jump)
         {
             PlayerStateMachine.SwitchState(typeof(PlayerState_jump));
-        }
-        if (playerInput.Move)
-        {
-            PlayerStateMachine.SwitchState(typeof(PlayerState_run));
         }
         if (!playerControl.IsGrounded)
         {
             PlayerStateMachine.SwitchState(typeof(PlayerState_fall));
+        }
+        if (playerInput.Move)
+        {
+            PlayerStateMachine.SwitchState(typeof(PlayerState_run));
         }
         currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
 
