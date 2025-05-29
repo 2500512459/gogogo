@@ -7,13 +7,13 @@ public class PlayerState : ScriptableObject, IState
     protected PlayerControl playerControl;
     protected PlayerStateMachine PlayerStateMachine;
 
-    protected float currentSpeed;
-    protected float stateStartTime;
-    protected float stateDuration => Time.time - stateStartTime;
-    protected bool isAnimationFinished => stateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
+    protected float currentSpeed;   //当前移动速度
+    protected float stateStartTime; //当前状态开始时间
+    protected float stateDuration => Time.time - stateStartTime;    //当前状态持续时间
+    protected bool isAnimationFinished => stateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;  //当前动画是否播放完毕
     
 
-    [SerializeField] private string stateName;
+    [SerializeField] private string stateName;  // 状态名称
     [SerializeField, Range(0, 1)] private float transitionDuration = 0.1f;//过度时间
     private int stateHash;
     public void Initialize(Animator animator, PlayerInput playerInput, PlayerControl playerControl, PlayerStateMachine PlayerStateMachine)
@@ -26,7 +26,7 @@ public class PlayerState : ScriptableObject, IState
 
     private void OnEnable()
     {
-        stateHash = Animator.StringToHash(stateName);
+        stateHash = Animator.StringToHash(stateName);   // 获取状态的哈希值，将状态名称转换为哈希值
     }
 
     public virtual void Enter()
